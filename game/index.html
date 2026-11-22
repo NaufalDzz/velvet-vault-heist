@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Velvet Vault: The Glass Syndicate</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div id="stage-shell">
+    <canvas id="heist-canvas" aria-label="Velvet Vault top-down tactical heist game"></canvas>
+
+    <header id="hud-top" aria-label="Heist telemetry">
+      <div class="brand-cluster">
+        <span class="crest-mark" aria-hidden="true">◆</span>
+        <div class="brand-text">
+          <div class="game-title">VELVET VAULT</div>
+          <div class="wing-subtitle" id="wing-name">WING I · THE AMBER GALLERY</div>
+        </div>
+        <nav class="wing-tabs" aria-label="Syndicate wings">
+          <button type="button" class="wing-btn active" data-wing="0">I</button>
+          <button type="button" class="wing-btn" data-wing="1">II</button>
+          <button type="button" class="wing-btn" data-wing="2">III</button>
+        </nav>
+      </div>
+
+      <div class="objective-cluster">
+        <span class="obj-label">OBJECTIVE</span>
+        <span class="obj-text" id="objective-text">Infiltrate &amp; lift the Amber Reliquary ($250K)</span>
+        <span class="cover-pill" id="cover-pill" hidden>IN COVER</span>
+      </div>
+
+      <div class="telemetry-cluster">
+        <div class="alarm-module" id="alarm-module" data-tier="calm">
+          <div class="alarm-head">
+            <span class="alarm-title">ALARM METER</span>
+            <span class="alarm-value" id="alarm-value">0% · CALM</span>
+          </div>
+          <div class="alarm-segments" id="alarm-segments" aria-hidden="true">
+            <span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span>
+          </div>
+        </div>
+
+        <div class="haul-module">
+          <div class="haul-label">HAUL</div>
+          <div class="haul-value" id="haul-value">$0K</div>
+        </div>
+
+        <button type="button" id="mute-btn" class="icon-btn" title="Toggle Audio [M]">[M] AUDIO</button>
+      </div>
+    </header>
+
+    <footer id="hud-bottom" aria-label="Gadget dock and controls">
+      <div class="gadget-dock">
+        <button type="button" class="gadget-btn" id="btn-emp" data-action="emp">
+          <span class="key-cap">1</span>
+          <span class="gadget-info">
+            <span class="gadget-name">EMP PULSE</span>
+            <span class="gadget-pips" id="emp-pips"></span>
+          </span>
+        </button>
+
+        <button type="button" class="gadget-btn" id="btn-decoy" data-action="decoy">
+          <span class="key-cap">2</span>
+          <span class="gadget-info">
+            <span class="gadget-name">BRASS DECOY</span>
+            <span class="gadget-pips" id="decoy-pips"></span>
+          </span>
+        </button>
+
+        <button type="button" class="gadget-btn" id="btn-smoke" data-action="smoke">
+          <span class="key-cap">3</span>
+          <span class="gadget-info">
+            <span class="gadget-name">SMOKE VEIL</span>
+            <span class="gadget-pips" id="smoke-pips"></span>
+          </span>
+        </button>
+
+        <button type="button" class="gadget-btn action-btn" id="btn-interact" data-action="interact">
+          <span class="key-cap">E</span>
+          <span class="gadget-info">
+            <span class="gadget-name" id="interact-label">HACK / LOOT</span>
+            <span class="gadget-sub" id="interact-sub">Move near target</span>
+          </span>
+        </button>
+      </div>
+
+      <div class="control-hints">
+        <span><kbd>WASD</kbd> Move</span>
+        <span><kbd>SHIFT</kbd> Sprint</span>
+        <span><kbd>CLICK</kbd> Aim Decoy</span>
+        <button type="button" class="retry-inline" id="btn-retry-inline"><kbd>R</kbd> Retry</button>
+      </div>
+    </footer>
+
+    <aside id="debrief-card" class="debrief-card" hidden aria-live="polite">
+      <div class="debrief-kicker" id="debrief-kicker">SYNDICATE LOCKDOWN</div>
+      <h2 class="debrief-heading" id="debrief-heading">DETECTION CONFIRMED</h2>
+      <p class="debrief-reason" id="debrief-reason"></p>
+      <div class="debrief-stats" id="debrief-stats"></div>
+      <div class="debrief-actions">
+        <button type="button" class="primary-btn" id="btn-debrief-primary">[R] INSTANT RETRY</button>
+        <button type="button" class="secondary-btn" id="btn-debrief-next" hidden>NEXT WING →</button>
+      </div>
+    </aside>
+
+    <p id="aria-status" role="status" aria-live="polite"></p>
+  </div>
+
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>
